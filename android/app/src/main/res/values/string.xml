@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Replace "343254889799245" with your Facebook App ID here. -->
+    <string name="app_name">TourArround</string>
+    <string name="facebook_app_id">343254889219000169</string>
+    <string name="facebook_client_token">78b640d2-6fbe-4597-8150-48f92bb058dc</string>
+    <string name="fb_login_protocol_scheme">fb343254889219000169</string>
+</resources>

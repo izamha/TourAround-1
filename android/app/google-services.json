@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "415121809456",
+    "project_id": "touraroundtwo",
+    "storage_bucket": "touraroundtwo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415121809456:android:da0c20507be9ecc0f60df5",
+        "android_client_info": {
+          "package_name": "com.musonera.tour_around"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415121809456-f8ha5a8qg5iqlv3mk727ebvtc7dnkirp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBByIHMUv3XEHsftddd6JwePXrzbzab6gs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415121809456-f8ha5a8qg5iqlv3mk727ebvtc7dnkirp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
