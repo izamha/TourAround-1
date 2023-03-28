@@ -8,7 +8,7 @@ ThemeData theme(BuildContext context) {
       fontFamily: "Gordita",
       appBarTheme: appBarTheme(context),
       textTheme: textTheme(),
-      inputDecorationTheme: inputDecorationTheme(),
+      // inputDecorationTheme: inputDecorationTheme(),
       visualDensity: VisualDensity.adaptivePlatformDensity);
 }
 
