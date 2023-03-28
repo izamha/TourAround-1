@@ -76,7 +76,7 @@ class CategoryScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: SvgPicture.asset(
                                   categories[index].icon,
-                                  width: 28,
+                                  width: getProportionateScreenWidth(28.0),
                                   color: tPrimaryColor,
                                 ),
                               ),

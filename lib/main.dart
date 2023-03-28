@@ -5,7 +5,10 @@ import 'package:tour_around/constants/colors.dart';
 import 'package:tour_around/constants/theme.dart';
 import 'package:tour_around/routes/routes.dart';
 import 'package:tour_around/screens/category/category_screen.dart';
+import 'package:tour_around/screens/place/packages/packages_screen.dart';
 import 'package:tour_around/screens/sign_in/sign_in_screen.dart';
+
+// Github password & Username(princejoee): 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
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
         builder: ((context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.hasData) {
-              return const CategoryScreen();
+              return const PackagesScreen();
             } else if (snapshot.hasError) {
               return Center(
                 child: Text('${snapshot.error}'),

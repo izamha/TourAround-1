@@ -30,7 +30,10 @@ class CategoryItem extends StatelessWidget {
             SvgPicture.asset(
               icon,
               width: 22,
-              color: tPrimaryColor,
+              colorFilter: const ColorFilter.mode(
+                tPrimaryColor,
+                BlendMode.dstIn,
+              ),
             ),
             const SizedBox(
               width: 20,
@@ -38,7 +41,7 @@ class CategoryItem extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
             const Icon(Icons.arrow_forward_ios),
