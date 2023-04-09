@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tour_around/constants/colors.dart';
 import 'package:tour_around/constants/size_config.dart';
 import 'package:tour_around/constants/theme.dart';
 
@@ -36,7 +37,10 @@ class _PackageItemState extends State<PackageItem> {
           Expanded(
             child: Text(
               widget.text,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: TextStyle(
+                color: tTextColor,
+                fontSize: getProportionateScreenHeight(18),
+              ),
             ),
           ),
           const Icon(

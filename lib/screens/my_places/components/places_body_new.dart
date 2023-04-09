@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -21,8 +19,7 @@ import 'package:tour_around/utils/new_place_methods.dart';
 import '../../../components/custom_suffix_icon.dart';
 import '../../../components/expandable_card.dart';
 import '../../../constants/theme.dart';
-import '../../home/components/show_images.dart';
-import 'no_places_yet.dart';
+import 'no_data_yet.dart';
 
 class PlacesBodyNew extends StatefulWidget {
   const PlacesBodyNew({Key? key}) : super(key: key);
@@ -391,7 +388,7 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
                       ),
               ],
             )
-          : const NoPlacesYet(),
+          : const NoDataYet(dataName: "places"),
     );
   }
 

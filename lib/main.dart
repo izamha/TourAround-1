@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:tour_around/constants/colors.dart';
 import 'package:tour_around/constants/theme.dart';
 import 'package:tour_around/routes/routes.dart';
-import 'package:tour_around/screens/category/category_screen.dart';
 import 'package:tour_around/screens/place/packages/packages_screen.dart';
 import 'package:tour_around/screens/sign_in/sign_in_screen.dart';
 

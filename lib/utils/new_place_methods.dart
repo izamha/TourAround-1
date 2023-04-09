@@ -1,14 +1,13 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:tour_around/models/place.dart';
 import 'package:tour_around/screens/sign_up/utils/auth_methods.dart';
 import 'package:tour_around/utils/storage_methods.dart';
 
 class NewPlaceMethods {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Create new place
@@ -56,7 +55,6 @@ class NewPlaceMethods {
   }
 
   String formatDate(DateTime dateTime) {
-    // DateTime now = DateTime.now();
     return DateFormat('MMM d, yyyy').format(dateTime);
   }
 }

@@ -3,12 +3,19 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../constants/size_config.dart';
 
-
-class NoPlacesYet extends StatelessWidget {
-  const NoPlacesYet({
+class NoDataYet extends StatefulWidget {
+  const NoDataYet({
     Key? key,
+    required this.dataName,
   }) : super(key: key);
 
+  final String dataName;
+
+  @override
+  State<NoDataYet> createState() => _NoDataYetState();
+}
+
+class _NoDataYetState extends State<NoDataYet> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -25,9 +32,9 @@ class NoPlacesYet extends StatelessWidget {
           SizedBox(
             height: getProportionateScreenHeight(40),
           ),
-          const Text(
-            "You haven't added places yet.",
-            style: TextStyle(fontSize: 20),
+          Text(
+            "You haven't added ${widget.dataName} yet.",
+            style: const TextStyle(fontSize: 20),
           ),
         ],
       ),

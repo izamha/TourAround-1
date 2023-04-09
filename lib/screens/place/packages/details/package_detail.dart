@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:tour_around/models/package.dart';
 import 'package:weather/weather.dart';
 
 import '../../../../components/text_marquee_widget.dart';
@@ -11,11 +12,11 @@ import '../../../../constants/paddings.dart';
 class PackageDetails extends StatefulWidget {
   const PackageDetails({
     super.key,
-    required this.packageName,
+    required this.package,
     this.weather,
   });
 
-  final String packageName;
+  final Package package;
   final Future<Weather>? weather;
 
   @override
@@ -101,13 +102,14 @@ class _PackageDetailsState extends State<PackageDetails> {
                                 TextMarquee(
                                   direction: Axis.horizontal,
                                   child: Text(
-                                    widget.packageName,
+                                    widget.package.packageName,
                                     style: const TextStyle(fontSize: 20),
                                   ),
                                 ),
                                 Row(
                                   children: [
                                     IconButton(
+                                      splashColor: tPrimaryColor,
                                       onPressed: () {
                                         setState(() {
                                           // placeRepo.updatePlace('isLiked', _isLiked);
@@ -127,6 +129,7 @@ class _PackageDetailsState extends State<PackageDetails> {
                                             ),
                                     ),
                                     IconButton(
+                                      splashColor: tPrimaryColor,
                                       onPressed: () {},
                                       icon: const Icon(
                                         Icons.share,
@@ -161,16 +164,16 @@ class _PackageDetailsState extends State<PackageDetails> {
                       "Weather Info",
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
-                    ListTile(
-                      title: const Text("Temperature"),
+                    const ListTile(
+                      title: Text("Temperature"),
                       subtitle: Text("0 Celcius"),
                     ),
-                    ListTile(
-                      title: const Text("Humidity"),
+                    const ListTile(
+                      title: Text("Humidity"),
                       subtitle: Text("humidityVal"),
                     ),
-                    ListTile(
-                      title: const Text("Max. Temp."),
+                    const ListTile(
+                      title: Text("Max. Temp."),
                       subtitle: Text("tempMax"),
                     ),
                     const SizedBox(

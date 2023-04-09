@@ -202,7 +202,7 @@ class _RetrieveWeatherInfoWidgetState extends State<RetrieveWeatherInfoWidget> {
                         ),
                         Text(
                           "Weather Info",
-                          style: Theme.of(context).textTheme.subtitle2,
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                         ListTile(
                           title: const Text("Temperature"),
