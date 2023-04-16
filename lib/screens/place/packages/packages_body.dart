@@ -11,7 +11,6 @@ import 'package:tour_around/utils/new_package_methods.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/size_config.dart';
-import '../../../constants/theme.dart';
 import '../../../models/package.dart';
 
 class PackagesBody extends StatefulWidget {
@@ -48,7 +47,7 @@ class _PackagesBodyState extends State<PackagesBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 400,
       child: StreamBuilder<QuerySnapshot>(
         stream: packageRepo.getStream(),

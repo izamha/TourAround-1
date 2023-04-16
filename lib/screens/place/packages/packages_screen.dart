@@ -6,14 +6,33 @@ import 'package:tour_around/constants/size_config.dart';
 import 'package:tour_around/screens/place/packages/packages_body.dart';
 import 'package:tour_around/utils/new_package_methods.dart';
 
+import '../../../components/custom_bottom_navbar.dart';
+import '../../../constants/enums.dart';
+import '../most_liked_screen.dart';
+
 class PackagesScreen extends StatefulWidget {
   const PackagesScreen({super.key});
+
+  static String routeName = "/all_packages";
 
   @override
   State<PackagesScreen> createState() => _PackagesScreenState();
 }
 
 class _PackagesScreenState extends State<PackagesScreen> {
+  // BotttomNavigation
+  final List<Map<String, dynamic>> _menuList = [
+    {
+      'menuState': MenuState.all,
+      'routeName': PackagesScreen.routeName,
+      'menuIcon': "assets/icons/maps-2.svg",
+    },
+    {
+      'menuState': MenuState.mostLiked,
+      'routeName': MostLikedScreen.routeName,
+      'menuIcon': "assets/icons/heart-icon.svg",
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -44,6 +63,10 @@ class _PackagesScreenState extends State<PackagesScreen> {
         elevation: 6.0,
       ),
       body: const PackagesBody(),
+      bottomNavigationBar: CustomBottomNavbar(
+        selectedMenu: MenuState.all,
+        menuList: _menuList,
+      ),
     );
   }
 }

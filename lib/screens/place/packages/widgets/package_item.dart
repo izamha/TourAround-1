@@ -7,11 +7,13 @@ class PackageItem extends StatefulWidget {
   const PackageItem({
     super.key,
     required this.text,
+    this.numVisitors,
     required this.icon,
     required this.onPress,
   });
 
   final String text;
+  final int? numVisitors;
   final IconData icon;
   final Function() onPress;
 
@@ -35,12 +37,43 @@ class _PackageItemState extends State<PackageItem> {
             width: getProportionateScreenWidth(20.0),
           ),
           Expanded(
-            child: Text(
-              widget.text,
-              style: TextStyle(
-                color: tTextColor,
-                fontSize: getProportionateScreenHeight(18),
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.text,
+                  style: TextStyle(
+                    color: tTextColor,
+                    fontSize: getProportionateScreenHeight(18),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Visitors: ${widget.numVisitors} | ",
+                      style: const TextStyle(
+                        color: tTextColor,
+                      ),
+                    ),
+                    Row(
+                      children: const [
+                        Icon(
+                          Icons.restaurant_outlined,
+                          size: 18.0,
+                          color: tTextColor,
+                        ),
+                        SizedBox(
+                          width: 4.0,
+                        ),
+                        Text("Snacks provided"),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           const Icon(

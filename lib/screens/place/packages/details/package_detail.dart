@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:tour_around/controllers/payment_controller.dart';
 import 'package:tour_around/models/package.dart';
 import 'package:weather/weather.dart';
 
@@ -26,6 +28,7 @@ class PackageDetails extends StatefulWidget {
 class _PackageDetailsState extends State<PackageDetails> {
   final List<String> placeImageUrls = [];
   bool _isLiked = false;
+  PaymentController paymentController = Get.put(PaymentController());
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +106,10 @@ class _PackageDetailsState extends State<PackageDetails> {
                                   direction: Axis.horizontal,
                                   child: Text(
                                     widget.package.packageName,
-                                    style: const TextStyle(fontSize: 20),
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 Row(
@@ -118,10 +124,10 @@ class _PackageDetailsState extends State<PackageDetails> {
                                         // placeRepo.updatePlace(
                                         //     'isVisible', true, snapshot); widget.widget.place.isLiked!
                                       },
-                                      icon: _isLiked
+                                      icon: !_isLiked
                                           ? const Icon(
                                               Icons.favorite_outline,
-                                              color: Colors.grey,
+                                              color: tPrimaryColor,
                                             )
                                           : const Icon(
                                               Icons.favorite,
@@ -138,9 +144,13 @@ class _PackageDetailsState extends State<PackageDetails> {
                                     ),
                                     IconButton(
                                       splashColor: tPrimaryColor,
-                                      onPressed: () {},
+                                      onPressed: () =>
+                                          paymentController.makePayment(
+                                              amount:
+                                                  widget.package.packagePrice,
+                                              currency: 'USD'),
                                       icon: const Icon(
-                                        Icons.ramp_right_outlined,
+                                        Icons.payment,
                                         color: tPrimaryColor,
                                       ),
                                     ),
