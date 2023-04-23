@@ -170,6 +170,25 @@ class _PackageDetailsState extends State<PackageDetails> {
                         textAlign: TextAlign.left,
                       ),
                     ),
+                    Container(
+                      padding: const EdgeInsets.all(4.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: tPrimaryColor,
+                          ),
+                          borderRadius: BorderRadius.circular(16.0)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _buildSnacksDesc(),
+                          _buildPeopleDesc(),
+                          _buildPriceDesc(),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 6.0,
+                    ),
                     Text(
                       "Weather Info",
                       style: Theme.of(context).textTheme.titleSmall,
@@ -196,6 +215,67 @@ class _PackageDetailsState extends State<PackageDetails> {
           ),
         ],
       )),
+    );
+  }
+
+  Row _buildSnacksDesc() {
+    return Row(
+      children: const [
+        Icon(
+          Icons.check_circle_outline_outlined,
+          color: tPrimaryColor,
+        ),
+        SizedBox(
+          width: 2.0,
+        ),
+        Text(
+          "Snacks",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _buildPeopleDesc() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: const [
+        Icon(
+          Icons.people_outline,
+          color: tPrimaryColor,
+        ),
+        SizedBox(
+          width: 2.0,
+        ),
+        Text(
+          "People",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPriceDesc() {
+    return Row(
+      children: [
+        const Icon(
+          Icons.sell_outlined,
+          color: tPrimaryColor,
+        ),
+        const SizedBox(
+          width: 2.0,
+        ),
+        Text(
+          "\$${widget.package.packagePrice}",
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }

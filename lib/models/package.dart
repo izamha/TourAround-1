@@ -8,6 +8,7 @@ class Package {
   DateTime? createdAt;
   final String? postedBy;
   String? referenceId;
+  int? visitors;
 
   static int _idCounter = 0;
   static final DateTime _toDay = DateTime.now();
@@ -20,6 +21,7 @@ class Package {
     this.createdAt,
     this.postedBy,
     this.referenceId,
+    this.visitors = 1,
   }) {
     _idCounter++;
     packageId = _idCounter;
@@ -40,6 +42,7 @@ class Package {
       packagePrice: map['packagePrice'],
       desc: map['packageDesc'],
       postedBy: map['postedBy'],
+      visitors: map['visitors'],
       // createdAt: map['createdAt'],
     );
   }
@@ -50,6 +53,7 @@ class Package {
         "packagePrice": packagePrice,
         "packageDesc": desc,
         "postedBy": postedBy,
+        "visitors": visitors,
       };
 
   static Package fromJson(Map<String, dynamic> json) => Package(
@@ -57,6 +61,7 @@ class Package {
         packagePrice: json['packagePrice'],
         desc: json['packageDesc'],
         postedBy: json['postedBy'],
+        visitors: json['visitors'],
         // createdAt: (json['createdAt'] as Timestamp).toDate(),
       );
 }
