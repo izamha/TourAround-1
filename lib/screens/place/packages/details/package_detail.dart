@@ -28,6 +28,7 @@ class PackageDetails extends StatefulWidget {
 class _PackageDetailsState extends State<PackageDetails> {
   final List<String> placeImageUrls = [];
   bool _isLiked = false;
+
   PaymentController paymentController = Get.put(PaymentController());
 
   @override
@@ -136,14 +137,6 @@ class _PackageDetailsState extends State<PackageDetails> {
                                     ),
                                     IconButton(
                                       splashColor: tPrimaryColor,
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.share,
-                                        color: tPrimaryColor,
-                                      ),
-                                    ),
-                                    IconButton(
-                                      splashColor: tPrimaryColor,
                                       onPressed: () =>
                                           paymentController.makePayment(
                                               amount:
@@ -162,11 +155,14 @@ class _PackageDetailsState extends State<PackageDetails> {
                         ],
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: defaultPadding),
+                    Padding(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: defaultPadding),
                       child: Text(
-                        'Elit sint proident do laboris. Eu laborum magna ea voluptate nostrud aute consectetur cupidatat in.Irure ut sunt quis in laborum excepteur exercitation veniam incididunt. Aute nisi sint proident fugiat elit.',
-                        style: TextStyle(fontSize: 19),
+                        widget.package.desc.length < 20
+                            ? 'Elit sint proident do laboris. Eu laborum magna ea voluptate nostrud aute consectetur cupidatat in.Irure ut sunt quis in laborum excepteur exercitation veniam incididunt. Aute nisi sint proident fugiat elit.'
+                            : widget.package.desc,
+                        style: const TextStyle(fontSize: 19),
                         textAlign: TextAlign.left,
                       ),
                     ),
@@ -187,7 +183,7 @@ class _PackageDetailsState extends State<PackageDetails> {
                       ),
                     ),
                     const SizedBox(
-                      height: 6.0,
+                      height: 14.0,
                     ),
                     Text(
                       "Weather Info",

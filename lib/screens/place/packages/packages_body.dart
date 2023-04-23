@@ -1,14 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tour_around/components/expandable_card.dart';
 import 'package:tour_around/repository/package_repository.dart';
 import 'package:tour_around/screens/my_places/components/no_data_yet.dart';
 import 'package:tour_around/screens/place/packages/details/package_detail.dart';
 import 'package:tour_around/screens/place/packages/widgets/package_item.dart';
 import 'package:tour_around/screens/sign_up/utils/auth_methods.dart';
-import 'package:tour_around/utils/new_package_methods.dart';
-
 import '../../../constants/colors.dart';
 import '../../../constants/size_config.dart';
 import '../../../models/package.dart';
@@ -136,6 +133,7 @@ class _PackagesBodyState extends State<PackagesBody> {
               padding: const EdgeInsets.all(4.0),
               child: PackageItem(
                 text: package.packageName,
+                price: package.packagePrice,
                 icon: Icons.place,
                 onPress: () => showPackageItem(package),
               ),

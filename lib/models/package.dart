@@ -9,6 +9,7 @@ class Package {
   final String? postedBy;
   String? referenceId;
   int? visitors;
+  bool? isLiked;
 
   static int _idCounter = 0;
   static final DateTime _toDay = DateTime.now();
@@ -22,6 +23,7 @@ class Package {
     this.postedBy,
     this.referenceId,
     this.visitors = 1,
+    this.isLiked = false,
   }) {
     _idCounter++;
     packageId = _idCounter;
