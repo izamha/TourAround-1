@@ -12,14 +12,15 @@ class CustomBottomNavbar extends StatelessWidget {
   const CustomBottomNavbar({
     Key? key,
     required this.selectedMenu,
+    this.menuList,
   }) : super(key: key);
 
   final MenuState selectedMenu;
+  final List<Map<String, dynamic>>? menuList;
 
   @override
   Widget build(BuildContext context) {
     const Color inActiveIconColor = Color(0xFFB6B6B6);
-
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
@@ -39,50 +40,19 @@ class CustomBottomNavbar extends StatelessWidget {
       child: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
+          children: List.generate(
+            menuList!.length,
+            (index) => IconButton(
               onPressed: () =>
-                  Navigator.pushNamed(context, HomeScreen.routeName),
+                  Navigator.pushNamed(context, menuList![index]['routeName']),
               icon: SvgPicture.asset(
-                "assets/icons/maps-2.svg",
-                color: MenuState.home == selectedMenu
+                menuList![index]['menuIcon'],
+                color: menuList![index]['menuState'] == selectedMenu
                     ? tPrimaryColor
                     : inActiveIconColor,
               ),
             ),
-            IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, FavoriteScreen.routeName);
-              },
-              icon: SvgPicture.asset(
-                "assets/icons/heart-icon.svg",
-                color: MenuState.favourite == selectedMenu
-                    ? tPrimaryColor
-                    : inActiveIconColor,
-              ),
-            ),
-            IconButton(
-              onPressed: () =>
-                  Navigator.pushNamed(context, MyPlacesScreen.routeName),
-              icon: SvgPicture.asset(
-                "assets/icons/location.svg",
-                height: 24,
-                color: MenuState.places == selectedMenu
-                    ? tPrimaryColor
-                    : inActiveIconColor,
-              ),
-            ),
-            IconButton(
-              onPressed: () =>
-                  Navigator.pushNamed(context, ProfileScreen.routeName),
-              icon: SvgPicture.asset(
-                "assets/icons/user-icon.svg",
-                color: MenuState.profile == selectedMenu
-                    ? tPrimaryColor
-                    : inActiveIconColor,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

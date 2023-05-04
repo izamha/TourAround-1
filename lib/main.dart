@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:tour_around/constants/colors.dart';
 import 'package:tour_around/constants/theme.dart';
 import 'package:tour_around/routes/routes.dart';
-import 'package:tour_around/screens/category/category_screen.dart';
 import 'package:tour_around/screens/place/packages/packages_screen.dart';
 import 'package:tour_around/screens/sign_in/sign_in_screen.dart';
 
@@ -12,6 +12,8 @@ import 'package:tour_around/screens/sign_in/sign_in_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+      "pk_test_51MxWOpEScvFYdlpUEVIfDBa3R7FPBpa0xnRdVg1OZjq1QW1P3r6gXvbtLIy7GrTX2QcfJPKQcCcpz20NRjCjfJOD002cjVsfKZ";
   await Firebase.initializeApp();
   runApp(const MyApp());
 }

@@ -21,7 +21,9 @@ import 'package:tour_around/constants/enums.dart';
 import 'package:tour_around/constants/size_config.dart';
 import 'package:tour_around/constants/theme.dart';
 import 'package:tour_around/models/place.dart';
+import 'package:tour_around/screens/favorite/favorite_screen.dart';
 import 'package:tour_around/screens/home/components/show_images.dart';
+import 'package:tour_around/screens/home/home_screen.dart';
 import 'package:tour_around/screens/place/place_details_screen.dart';
 import 'package:tour_around/screens/sign_up/utils/auth_methods.dart';
 import 'package:tour_around/screens/sign_up/utils/coordinate_distance.dart';
@@ -29,6 +31,8 @@ import 'package:tour_around/utils/new_place_methods.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/api_keys.dart';
 import '../../../repository/place_repository.dart';
+import '../../my_places/my_places_screen.dart';
+import '../../profile/profile_screen.dart';
 
 class BodyHome extends StatefulWidget {
   const BodyHome({Key? key}) : super(key: key);
@@ -580,6 +584,30 @@ class _BodyHomeState extends State<BodyHome> {
     });
   }
 
+  // BotttomNavigation
+  final List<Map<String, dynamic>> _menuList = [
+    {
+      'menuState': MenuState.home,
+      'routeName': HomeScreen.routeName,
+      'menuIcon': "assets/icons/maps-2.svg",
+    },
+    {
+      'menuState': MenuState.favourite,
+      'routeName': FavoriteScreen.routeName,
+      'menuIcon': "assets/icons/heart-icon.svg",
+    },
+    {
+      'menuState': MenuState.places,
+      'routeName': MyPlacesScreen.routeName,
+      'menuIcon': "assets/icons/location.svg",
+    },
+    {
+      'menuState': MenuState.profile,
+      'routeName': ProfileScreen.routeName,
+      'menuIcon': "assets/icons/user-icon.svg",
+    },
+  ];
+
   @override
   void initState() {
     _retrieveUserInfo();
@@ -673,8 +701,10 @@ class _BodyHomeState extends State<BodyHome> {
                 ),
               ],
             ),
-      bottomNavigationBar:
-          const CustomBottomNavbar(selectedMenu: MenuState.home),
+      bottomNavigationBar: CustomBottomNavbar(
+        selectedMenu: MenuState.home,
+        menuList: _menuList,
+      ),
     );
   }
 

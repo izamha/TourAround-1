@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:tour_around/controllers/payment_controller.dart';
+import 'package:tour_around/models/package.dart';
 import 'package:weather/weather.dart';
 
 import '../../../../components/text_marquee_widget.dart';
@@ -11,11 +14,11 @@ import '../../../../constants/paddings.dart';
 class PackageDetails extends StatefulWidget {
   const PackageDetails({
     super.key,
-    required this.packageName,
+    required this.package,
     this.weather,
   });
 
-  final String packageName;
+  final Package package;
   final Future<Weather>? weather;
 
   @override
@@ -25,6 +28,8 @@ class PackageDetails extends StatefulWidget {
 class _PackageDetailsState extends State<PackageDetails> {
   final List<String> placeImageUrls = [];
   bool _isLiked = false;
+
+  PaymentController paymentController = Get.put(PaymentController());
 
   @override
   Widget build(BuildContext context) {
@@ -101,13 +106,17 @@ class _PackageDetailsState extends State<PackageDetails> {
                                 TextMarquee(
                                   direction: Axis.horizontal,
                                   child: Text(
-                                    widget.packageName,
-                                    style: const TextStyle(fontSize: 20),
+                                    widget.package.packageName,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 Row(
                                   children: [
                                     IconButton(
+                                      splashColor: tPrimaryColor,
                                       onPressed: () {
                                         setState(() {
                                           // placeRepo.updatePlace('isLiked', _isLiked);
@@ -116,10 +125,10 @@ class _PackageDetailsState extends State<PackageDetails> {
                                         // placeRepo.updatePlace(
                                         //     'isVisible', true, snapshot); widget.widget.place.isLiked!
                                       },
-                                      icon: _isLiked
+                                      icon: !_isLiked
                                           ? const Icon(
                                               Icons.favorite_outline,
-                                              color: Colors.grey,
+                                              color: tPrimaryColor,
                                             )
                                           : const Icon(
                                               Icons.favorite,
@@ -127,17 +136,14 @@ class _PackageDetailsState extends State<PackageDetails> {
                                             ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.share,
-                                        color: tPrimaryColor,
-                                      ),
-                                    ),
-                                    IconButton(
                                       splashColor: tPrimaryColor,
-                                      onPressed: () {},
+                                      onPressed: () =>
+                                          paymentController.makePayment(
+                                              amount:
+                                                  widget.package.packagePrice,
+                                              currency: 'USD'),
                                       icon: const Icon(
-                                        Icons.ramp_right_outlined,
+                                        Icons.payment,
                                         color: tPrimaryColor,
                                       ),
                                     ),
@@ -149,28 +155,50 @@ class _PackageDetailsState extends State<PackageDetails> {
                         ],
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: defaultPadding),
+                    Padding(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: defaultPadding),
                       child: Text(
-                        'Elit sint proident do laboris. Eu laborum magna ea voluptate nostrud aute consectetur cupidatat in.Irure ut sunt quis in laborum excepteur exercitation veniam incididunt. Aute nisi sint proident fugiat elit.',
-                        style: TextStyle(fontSize: 19),
+                        widget.package.desc.length < 20
+                            ? 'Elit sint proident do laboris. Eu laborum magna ea voluptate nostrud aute consectetur cupidatat in.Irure ut sunt quis in laborum excepteur exercitation veniam incididunt. Aute nisi sint proident fugiat elit.'
+                            : widget.package.desc,
+                        style: const TextStyle(fontSize: 19),
                         textAlign: TextAlign.left,
                       ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(4.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: tPrimaryColor,
+                          ),
+                          borderRadius: BorderRadius.circular(16.0)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _buildSnacksDesc(),
+                          _buildPeopleDesc(),
+                          _buildPriceDesc(),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 14.0,
                     ),
                     Text(
                       "Weather Info",
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
-                    ListTile(
-                      title: const Text("Temperature"),
+                    const ListTile(
+                      title: Text("Temperature"),
                       subtitle: Text("0 Celcius"),
                     ),
-                    ListTile(
-                      title: const Text("Humidity"),
+                    const ListTile(
+                      title: Text("Humidity"),
                       subtitle: Text("humidityVal"),
                     ),
-                    ListTile(
-                      title: const Text("Max. Temp."),
+                    const ListTile(
+                      title: Text("Max. Temp."),
                       subtitle: Text("tempMax"),
                     ),
                     const SizedBox(
@@ -183,6 +211,67 @@ class _PackageDetailsState extends State<PackageDetails> {
           ),
         ],
       )),
+    );
+  }
+
+  Row _buildSnacksDesc() {
+    return Row(
+      children: const [
+        Icon(
+          Icons.check_circle_outline_outlined,
+          color: tPrimaryColor,
+        ),
+        SizedBox(
+          width: 2.0,
+        ),
+        Text(
+          "Snacks",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _buildPeopleDesc() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: const [
+        Icon(
+          Icons.people_outline,
+          color: tPrimaryColor,
+        ),
+        SizedBox(
+          width: 2.0,
+        ),
+        Text(
+          "People",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPriceDesc() {
+    return Row(
+      children: [
+        const Icon(
+          Icons.sell_outlined,
+          color: tPrimaryColor,
+        ),
+        const SizedBox(
+          width: 2.0,
+        ),
+        Text(
+          "\$${widget.package.packagePrice}",
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }
