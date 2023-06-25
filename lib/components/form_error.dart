@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../constants/size_config.dart';
 
-
 class FormError extends StatelessWidget {
   const FormError({
     Key? key,
@@ -15,8 +14,11 @@ class FormError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: List.generate(
-            errors.length, (index) => formErrorText(errors[index])));
+      children: List.generate(
+        errors.length,
+        (index) => formErrorText(errors[index]),
+      ),
+    );
   }
 
   Row formErrorText(String error) {

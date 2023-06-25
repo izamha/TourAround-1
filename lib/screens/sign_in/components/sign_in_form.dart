@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tour_around/constants/colors.dart';
 import 'package:tour_around/screens/sign_up/utils/auth_methods.dart';
 import 'package:tour_around/screens/sign_up/utils/show_snack_bar.dart';
-
 import '../../../components/custom_suffix_icon.dart';
 import '../../../components/default_button.dart';
 import '../../../components/form_error.dart';
