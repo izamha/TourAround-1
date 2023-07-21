@@ -77,11 +77,11 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
             stream: packageRepo.getStream(),
             builder: ((context, snapshot) {
               if (!snapshot.hasData) {
-                return Center(
+                return const Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       SizedBox(
                         height: 60,
                       ),

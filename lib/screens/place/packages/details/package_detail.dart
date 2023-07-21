@@ -27,7 +27,7 @@ class PackageDetails extends StatefulWidget {
 
 class _PackageDetailsState extends State<PackageDetails> {
   final List<String> placeImageUrls = [];
-  bool _isLiked = false;
+  final bool _isLiked = false;
 
   PaymentController paymentController = Get.put(PaymentController());
 
@@ -215,8 +215,8 @@ class _PackageDetailsState extends State<PackageDetails> {
   }
 
   Row _buildSnacksDesc() {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Icon(
           Icons.check_circle_outline_outlined,
           color: tPrimaryColor,
@@ -235,9 +235,9 @@ class _PackageDetailsState extends State<PackageDetails> {
   }
 
   Row _buildPeopleDesc() {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Icon(
           Icons.people_outline,
           color: tPrimaryColor,

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tour_around/constants/enums.dart';
-import 'package:tour_around/screens/favorite/favorite_screen.dart';
-import 'package:tour_around/screens/my_places/my_places_screen.dart';
 
 import '../constants/colors.dart';
-import '../screens/home/home_screen.dart';
-import '../screens/profile/profile_screen.dart';
 
 class CustomBottomNavbar extends StatelessWidget {
   const CustomBottomNavbar({

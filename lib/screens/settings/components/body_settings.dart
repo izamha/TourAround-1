@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:tour_around/constants/colors.dart';
 
 class BodySettings extends StatefulWidget {
   const BodySettings({

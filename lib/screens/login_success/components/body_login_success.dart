@@ -3,7 +3,6 @@ import 'package:tour_around/screens/category/category_screen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants/size_config.dart';
-import '../../home/home_screen.dart';
 
 class BodyLoginSuccess extends StatelessWidget {
   const BodyLoginSuccess({Key? key}) : super(key: key);

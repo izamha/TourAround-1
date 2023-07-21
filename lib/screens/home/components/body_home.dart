@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -89,15 +88,15 @@ class _BodyHomeState extends State<BodyHome> {
   }
 
   void selectImages() async {
-    final List<XFile>? selectedImages = await _imagePicker.pickMultiImage();
-    if (selectedImages!.isNotEmpty) {
-      selectedImages.forEach((image) {
+    final List<XFile> selectedImages = await _imagePicker.pickMultiImage();
+    if (selectedImages.isNotEmpty) {
+      for (var image in selectedImages) {
         setState(() {
           imageFileList!.add(
             File(image.path),
           );
         });
-      });
+      }
     }
   }
 
@@ -526,11 +525,11 @@ class _BodyHomeState extends State<BodyHome> {
     polylineCoordinates.clear();
 
     if (polylineResult.points.isNotEmpty) {
-      polylineResult.points.forEach(
-        (PointLatLng pointLatLng) => polylineCoordinates.add(
+      for (var pointLatLng in polylineResult.points) {
+        polylineCoordinates.add(
           LatLng(pointLatLng.latitude, pointLatLng.longitude),
-        ),
-      );
+        );
+      }
       double distanceInMeters = distanceBetween(fromHere.latitude,
           fromHere.longitude, toThere.latitude, toThere.longitude);
 
@@ -570,7 +569,7 @@ class _BodyHomeState extends State<BodyHome> {
 
     setState(() {
       _placesSearchResult = result.results;
-      _placesSearchResult.forEach((place) {
+      for (var place in _placesSearchResult) {
         final marker = Marker(
           markerId: MarkerId(place.placeId),
           position: LatLng(
@@ -580,7 +579,7 @@ class _BodyHomeState extends State<BodyHome> {
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
         );
         _otherMarkers.add(marker);
-      });
+      }
     });
   }
 

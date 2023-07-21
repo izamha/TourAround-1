@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:tour_around/screens/home/home_screen.dart';
-import 'package:tour_around/screens/profile/profile_screen.dart';
 import 'package:tour_around/screens/sign_up/components/sign_up_form.dart';
 import 'package:tour_around/screens/sign_up/components/social_card.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -89,14 +88,13 @@ class _BodySignUpState extends State<BodySignUp> {
       UserCredential result = await _auth.signInWithCredential(authCredential);
       User? user = result.user;
 
-      if (result != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-        );
-      } // if result not null we simply call the MaterialpageRoute,
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
+// if result not null we simply call the MaterialpageRoute,
       // for go to the HomePage screen
     }
   }

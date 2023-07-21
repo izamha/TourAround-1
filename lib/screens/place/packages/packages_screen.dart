@@ -87,8 +87,8 @@ class _AddPackageDialogState extends State<AddPackageDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Row(
-        children: const [
+      title: const Row(
+        children: [
           Icon(
             Icons.draw_outlined,
             color: tPrimaryColor,
@@ -233,9 +233,7 @@ class _AddPackageDialogState extends State<AddPackageDialog> {
             text: "Successfully created a new package!",
             snackTitle: "Success",
           ),
-          setState(() {
-            _isLoading = false;
-          })
+          _isLoading = false,
         },
       );
       _packageDescController.text = '';

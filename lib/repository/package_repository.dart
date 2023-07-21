@@ -14,8 +14,8 @@ class PackageRepository {
   }
 
   Stream<QuerySnapshot> getStream() {
-    Stream _data = _firestore.collection("packages").snapshots();
-    debugPrint("$_data");
+    Stream data = _firestore.collection("packages").snapshots();
+    debugPrint("$data");
     return _firestore.collection("packages").snapshots();
   }
 
