@@ -67,10 +67,10 @@ class _CategoryItemDetailsState extends State<CategoryItemDetails> {
             SizedBox(
               height: getProportionateScreenHeight(30),
             ),
-            Card(
+            const Card(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   ListTile(
                     leading: Icon(Icons.phone),
                     title: Text(

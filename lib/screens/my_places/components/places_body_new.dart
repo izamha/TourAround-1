@@ -55,15 +55,15 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
   }
 
   void selectImages() async {
-    final List<XFile>? selectedImages = await _imagePicker.pickMultiImage();
-    if (selectedImages!.isNotEmpty) {
-      selectedImages.forEach((image) {
+    final List<XFile> selectedImages = await _imagePicker.pickMultiImage();
+    if (selectedImages.isNotEmpty) {
+      for (var image in selectedImages) {
         setState(() {
           imageFileList!.add(
             File(image.path),
           );
         });
-      });
+      }
     }
   }
 

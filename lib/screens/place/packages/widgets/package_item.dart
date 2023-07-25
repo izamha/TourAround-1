@@ -75,8 +75,8 @@ class _PackageItemState extends State<PackageItem> {
   }
 
   Widget _buildSnacksDesc() {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Icon(
           Icons.check_circle_outline_outlined,
           size: 20.0,
@@ -96,9 +96,9 @@ class _PackageItemState extends State<PackageItem> {
   }
 
   Widget _buildPeopleDesc() {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Icon(
           Icons.people_outline,
           color: tPrimaryColor,

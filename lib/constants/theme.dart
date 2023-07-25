@@ -28,8 +28,8 @@ InputDecorationTheme inputDecorationTheme() {
 
 TextTheme textTheme() {
   return const TextTheme(
-    bodyText1: TextStyle(color: tTextColor),
-    bodyText2: TextStyle(color: tTextColor),
+    bodyLarge: TextStyle(color: tTextColor),
+    bodyMedium: TextStyle(color: tTextColor),
   );
 }
 
@@ -40,7 +40,7 @@ AppBarTheme appBarTheme(BuildContext context) {
     systemOverlayStyle:
         const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
     iconTheme: const IconThemeData(color: Colors.black),
-    titleTextStyle: Theme.of(context).textTheme.headline6?.copyWith(
+    titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
           fontSize: 18,
           color: const Color(0xFF8B8B8B),
         ),

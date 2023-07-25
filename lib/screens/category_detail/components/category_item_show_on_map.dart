@@ -368,7 +368,7 @@ class _CategoryItemShowOnMapState extends State<CategoryItemShowOnMap> {
     setState(() {
       _placesSearchResult = result.results;
       if (_placesSearchResult.isNotEmpty) {
-        _placesSearchResult.forEach((place) {
+        for (var place in _placesSearchResult) {
           _markers.add(
             Marker(
               markerId: MarkerId(place.placeId),
@@ -386,7 +386,7 @@ class _CategoryItemShowOnMapState extends State<CategoryItemShowOnMap> {
               },
             ),
           );
-        });
+        }
       }
     });
   }
@@ -407,11 +407,11 @@ class _CategoryItemShowOnMapState extends State<CategoryItemShowOnMap> {
     polylineCoordinates.clear();
 
     if (polylineResult.points.isNotEmpty) {
-      polylineResult.points.forEach(
-        (PointLatLng pointLatLng) => polylineCoordinates.add(
+      for (var pointLatLng in polylineResult.points) {
+        polylineCoordinates.add(
           LatLng(pointLatLng.latitude, pointLatLng.longitude),
-        ),
-      );
+        );
+      }
 
       double distanceInMeters = distanceBetween(fromHere.latitude,
           fromHere.longitude, toThere.latitude, toThere.longitude);

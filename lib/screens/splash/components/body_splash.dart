@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tour_around/screens/sign_in/sign_in_screen.dart';
-import 'package:tour_around/screens/sign_up/sign_up_screen.dart';
 import 'package:tour_around/screens/splash/components/splash_content.dart';
 import '../../../components/default_button.dart';
 import '../../../constants/colors.dart';

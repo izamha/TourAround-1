@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tour_around/screens/sign_in/components/sign_in_form.dart';
-
 import '../../../components/have_no_account_text.dart';
 import '../../../constants/size_config.dart';
 import '../../sign_up/components/social_card.dart';
