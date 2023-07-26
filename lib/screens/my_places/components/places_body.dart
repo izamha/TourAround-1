@@ -61,10 +61,11 @@ class _PlacesBodyState extends State<PlacesBody> {
                         width: 20.0,
                         height: 20.0,
                         child: CircularProgressIndicator(
-                            value: event == null
-                                ? 0
-                                : event.cumulativeBytesLoaded /
-                                    event.expectedTotalBytes!),
+                          value: event == null
+                              ? 0
+                              : event.cumulativeBytesLoaded /
+                                  event.expectedTotalBytes!,
+                        ),
                       ),
                     ),
                   ),

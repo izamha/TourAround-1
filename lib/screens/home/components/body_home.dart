@@ -64,6 +64,7 @@ class _BodyHomeState extends State<BodyHome> {
   MapType _currentMapType = MapType.normal;
   LatLng? _lastMapPosition;
   final GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: googleApiKey);
+
   List<PlacesSearchResult> _placesSearchResult = [];
 
   List<File>? imageFileList = [];
@@ -159,9 +160,11 @@ class _BodyHomeState extends State<BodyHome> {
   void getCurrentLocation() async {
     l.Location location = l.Location();
 
-    location.getLocation().then(
-          (location) => {currentLocation = location},
-        );
+    // location.getLocation().then(
+    //       (location) => {currentLocation = location},
+    //     );
+
+    _currentLatLng = LatLng(initLatLng.latitude, initLatLng.longitude);
 
     googleMapController = await _controller.future;
 
@@ -367,7 +370,8 @@ class _BodyHomeState extends State<BodyHome> {
                                         style: flatRoundButtonStyle,
                                         onPressed: selectImages,
                                         child: SvgPicture.asset(
-                                            "assets/icons/camera-icon.svg"),
+                                          "assets/icons/camera-icon.svg",
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -609,12 +613,12 @@ class _BodyHomeState extends State<BodyHome> {
 
   @override
   void initState() {
+    super.initState();
     _retrieveUserInfo();
     getCustomLocations(); // Custom added places
     setCurrentLocation();
     getCurrentLocation();
     setCustomMarkerIcon();
-    super.initState();
   }
 
   @override
@@ -642,14 +646,22 @@ class _BodyHomeState extends State<BodyHome> {
       ),
       body: _currentLatLng == null
           ? const Center(
-              child: CircularProgressIndicator(),
+              child: SizedBox(
+                height: 25,
+                width: 25,
+                child: CircularProgressIndicator(
+                  color: tPrimaryColor,
+                ),
+              ),
             )
           : Stack(
               children: [
                 GoogleMap(
                   initialCameraPosition: CameraPosition(
                     target: LatLng(
-                        _currentLatLng!.latitude, _currentLatLng!.longitude),
+                      _currentLatLng!.latitude,
+                      _currentLatLng!.longitude,
+                    ),
                   ),
                   polylines: {
                     Polyline(
