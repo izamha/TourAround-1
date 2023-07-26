@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tour_around/screens/place/packages/details/package_detail.dart';
-import 'package:tour_around/screens/place/packages/packages_screen.dart';
 
 import '../../components/custom_bottom_navbar.dart';
 import '../../constants/colors.dart';
@@ -28,19 +27,6 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
   DocumentSnapshot? snapshot;
   String userType = "";
   String userName = "";
-  // BotttomNavigation
-  final List<Map<String, dynamic>> _menuList = [
-    {
-      'menuState': MenuState.all,
-      'routeName': PackagesScreen.routeName,
-      'menuIcon': "assets/icons/maps-2.svg",
-    },
-    {
-      'menuState': MenuState.mostLiked,
-      'routeName': MostLikedScreen.routeName,
-      'menuIcon': "assets/icons/heart-icon.svg",
-    },
-  ];
 
   void retrieveUserInfo() async {
     snapshot = await AuthMethods().getUserInfoTwo();
@@ -124,9 +110,8 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavbar(
+      bottomNavigationBar: const CustomBottomNavbar(
         selectedMenu: MenuState.mostLiked,
-        menuList: _menuList,
       ),
     );
   }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-
 class ExpandableCard extends StatefulWidget {
   const ExpandableCard({
     Key? key,
-    required this.isExpanded,
+    this.isExpanded = true,
     required this.collapsedChild,
     required this.expandedChild,
   }) : super(key: key);

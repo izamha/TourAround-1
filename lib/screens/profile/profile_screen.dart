@@ -23,8 +23,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: const Text("Profile"),
       ),
       body: const BodyProfile(),
-      bottomNavigationBar:
-          const CustomBottomNavbar(selectedMenu: MenuState.profile),
+      bottomNavigationBar: const CustomBottomNavbar(
+        selectedMenu: MenuState.profile,
+      ),
     );
   }
 }

@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -33,7 +32,9 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
   TextEditingController _placeDescController = TextEditingController();
   TextEditingController _latController = TextEditingController();
   TextEditingController _lngController = TextEditingController();
-  final Completer<GoogleMapController> _controller = Completer();
+
+  // final Completer<GoogleMapController> _controller = Completer();
+
   final _formKey = GlobalKey<FormState>();
 
   final PlaceRepository placeRepo = PlaceRepository();
@@ -69,8 +70,8 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
 
   @override
   void initState() {
-    retrieveUserInfo();
     super.initState();
+    retrieveUserInfo();
   }
 
   @override
@@ -226,7 +227,10 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 8.0, top: 8.0, right: 8.0),
+                                    left: 8.0,
+                                    top: 8.0,
+                                    right: 8.0,
+                                  ),
                                   child: SizedBox(
                                     child: GestureDetector(
                                       onTap: () {
@@ -239,7 +243,8 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
                                         maxLines: 3,
                                         softWrap: true,
                                         style: const TextStyle(
-                                            color: Colors.black),
+                                          color: Colors.black,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -252,7 +257,7 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
                                   padding: EdgeInsets.only(
                                     left: getProportionateScreenWidth(8.0),
                                     top: getProportionateScreenWidth(8.0),
-                                    right: getProportionateScreenWidth(8.0),
+                                    right: getProportionateScreenWidth(4.0),
                                   ),
                                   child: SizedBox(
                                     child: GestureDetector(
@@ -275,7 +280,7 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
                                 ),
                               ],
                             ),
-                            isExpanded: isExpanded,
+                            isExpanded: true,
                           ),
                           Padding(
                             padding: EdgeInsets.only(
@@ -294,8 +299,9 @@ class _PlacesBodyNewState extends State<PlacesBodyNew> {
                                         ? const Text(
                                             "Disapprove",
                                             style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 255, 60, 0)),
+                                              color: Color.fromARGB(
+                                                  255, 255, 60, 0),
+                                            ),
                                           )
                                         : const Text("Approve"))
                                     : const Text(""),

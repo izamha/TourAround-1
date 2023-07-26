@@ -4,11 +4,16 @@ import 'package:tour_around/constants/enums.dart';
 import 'package:tour_around/constants/size_config.dart';
 import 'package:tour_around/screens/my_places/components/places_body_new.dart';
 
-class MyPlacesScreen extends StatelessWidget {
+class MyPlacesScreen extends StatefulWidget {
   static const routeName = "/my_places";
 
   const MyPlacesScreen({Key? key}) : super(key: key);
 
+  @override
+  State<MyPlacesScreen> createState() => _MyPlacesScreenState();
+}
+
+class _MyPlacesScreenState extends State<MyPlacesScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

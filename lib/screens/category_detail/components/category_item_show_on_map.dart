@@ -133,18 +133,18 @@ class _CategoryItemShowOnMapState extends State<CategoryItemShowOnMap> {
   void setCurrentLocation() {
     // Set currentLocation
     Geolocator.getCurrentPosition().then((currentLoc) {
-      setState(() {
-        _currentLatLng = LatLng(currentLoc.latitude, currentLoc.longitude);
-        _markers.addAll([
-          Marker(
-            markerId: const MarkerId("currentLoc"),
-            position: LatLng(currentLoc.latitude, currentLoc.longitude),
-            infoWindow: const InfoWindow(
-              title: "Me",
-              snippet: "Here I am!",
-            ),
+      _currentLatLng = LatLng(currentLoc.latitude, currentLoc.longitude);
+      _markers.addAll([
+        Marker(
+          markerId: const MarkerId("currentLoc"),
+          position: LatLng(currentLoc.latitude, currentLoc.longitude),
+          infoWindow: const InfoWindow(
+            title: "Me",
+            snippet: "Here I am!",
           ),
-        ]);
+        ),
+      ]);
+      setState(() {
         if (_currentLatLng != null) {
           getPolyPoints(
             _currentLatLng!,
@@ -182,15 +182,13 @@ class _CategoryItemShowOnMapState extends State<CategoryItemShowOnMap> {
 
   @override
   void initState() {
+    super.initState();
     getProximities(
       LatLng(widget.categoryItemLat, widget.categoryItemLng),
     );
     initMarker();
-
     // Mark the currentLoc
     setCurrentLocation();
-
-    super.initState();
   }
 
   @override
@@ -203,123 +201,130 @@ class _CategoryItemShowOnMapState extends State<CategoryItemShowOnMap> {
         children: [
           Expanded(
             flex: 1,
-            child: _currentLatLng == null
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : Stack(
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: Color(0xff7c94b6),
-                        ),
-                        child: FractionallySizedBox(
-                          heightFactor: 1,
-                          child: GoogleMap(
-                            initialCameraPosition: CameraPosition(
-                                target: LatLng(
-                                  widget.categoryItemLat,
-                                  widget.categoryItemLng,
-                                ),
-                                zoom: 11.0),
-                            polylines: {
-                              Polyline(
-                                polylineId: const PolylineId("route"),
-                                points: polylineCoordinates,
-                                color: Colors.blue,
-                                width: 6,
-                              ),
-                            },
-                            markers: _markers,
-                            onMapCreated: (mapController) {
-                              _controller.complete(mapController);
-                            },
-                            onCameraMove: _onCameraMove,
-                            mapType: _currentMapType,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(
-                          getProportionateScreenWidth(16.0),
-                        ),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: Column(
-                            children: [
-                              ReusableFab(
-                                onPressed: _onExploreButtonPressed,
-                                icon: Icons.explore_sharp,
-                              ),
-                              ReusableFab(
-                                onPressed: _onMapTypeButtonPressed,
-                                icon: Icons.map,
-                              ),
-                              ReusableFab(
-                                icon: Icons.radar,
-                                onPressed: () => _onTravelButtonPressed(
-                                  context,
-                                  widget.categoryName,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+            child: Stack(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xff7c94b6),
                   ),
+                  child: FractionallySizedBox(
+                    heightFactor: 1,
+                    child: GoogleMap(
+                      initialCameraPosition: CameraPosition(
+                          target: LatLng(
+                            widget.categoryItemLat,
+                            widget.categoryItemLng,
+                          ),
+                          zoom: 11.0),
+                      polylines: {
+                        Polyline(
+                          polylineId: const PolylineId("route"),
+                          points: polylineCoordinates,
+                          color: Colors.blue,
+                          width: 6,
+                        ),
+                      },
+                      markers: _markers,
+                      onMapCreated: (mapController) {
+                        _controller.complete(mapController);
+                      },
+                      onCameraMove: _onCameraMove,
+                      mapType: _currentMapType,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(
+                    getProportionateScreenWidth(16.0),
+                  ),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Column(
+                      children: [
+                        ReusableFab(
+                          onPressed: _onExploreButtonPressed,
+                          icon: Icons.explore_sharp,
+                        ),
+                        ReusableFab(
+                          onPressed: _onMapTypeButtonPressed,
+                          icon: Icons.map,
+                        ),
+                        ReusableFab(
+                          icon: Icons.radar,
+                          onPressed: () => _onTravelButtonPressed(
+                            context,
+                            widget.categoryName,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Expanded(
             flex: 1,
             child: _currentLatLng == null
                 ? const Center(
-                    child: CircularProgressIndicator(),
+                    child: SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: CircularProgressIndicator(
+                        color: tPrimaryColor,
+                      ),
+                    ),
                   )
                 : Card(
                     elevation: 14.0,
                     child: Container(
                       width: double.infinity,
                       color: Colors.transparent,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Places you might visit",
-                            style: TextStyle(
-                              fontSize: getProportionateScreenHeight(20),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 8.0,
                             ),
-                          ),
-                          SizedBox(
-                            height: getProportionateScreenHeight(20),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(8.0),
+                            Text(
+                              "Places you might want visit",
+                              style: TextStyle(
+                                fontSize: getProportionateScreenHeight(20),
                               ),
                             ),
-                            width: double.infinity,
-                            height: 295.0,
-                            child: ListView.builder(
-                                itemCount: 20,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: EdgeInsets.all(
-                                      getProportionateScreenHeight(8.0),
-                                    ),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          getProportionateScreenHeight(8.0),
-                                        ),
-                                        color: tPrimaryColor,
+                            SizedBox(
+                              height: getProportionateScreenHeight(20),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(8.0),
+                                ),
+                              ),
+                              width: double.infinity,
+                              height: 295.0,
+                              child: ListView.builder(
+                                  itemCount: 20,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: EdgeInsets.all(
+                                        getProportionateScreenHeight(8.0),
                                       ),
-                                      child: _buildListTile(index),
-                                    ),
-                                  );
-                                }),
-                          ),
-                        ],
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            getProportionateScreenHeight(8.0),
+                                          ),
+                                          color: tPrimaryColor,
+                                        ),
+                                        child: _buildListTile(index),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

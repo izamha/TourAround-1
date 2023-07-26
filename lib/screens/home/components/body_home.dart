@@ -712,9 +712,8 @@ class _BodyHomeState extends State<BodyHome> {
                 ),
               ],
             ),
-      bottomNavigationBar: CustomBottomNavbar(
+      bottomNavigationBar: const CustomBottomNavbar(
         selectedMenu: MenuState.home,
-        menuList: _menuList,
       ),
     );
   }

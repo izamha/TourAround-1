@@ -63,9 +63,8 @@ class _PackagesScreenState extends State<PackagesScreen> {
         elevation: 6.0,
       ),
       body: const PackagesBody(),
-      bottomNavigationBar: CustomBottomNavbar(
+      bottomNavigationBar: const CustomBottomNavbar(
         selectedMenu: MenuState.all,
-        menuList: _menuList,
       ),
     );
   }
